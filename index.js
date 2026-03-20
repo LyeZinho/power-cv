@@ -1,4 +1,8 @@
 import dotenv from 'dotenv';
+
+// Load environment variables FIRST, before any other imports
+dotenv.config();
+
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { dirname } from 'path';
@@ -11,9 +15,6 @@ import { analyze } from './src/analyzer_dna.js';
 import { parseJob } from './src/parser_job.js';
 import { aggregate } from './src/aggregator.js';
 import { saveJSON } from './src/utils.js';
-
-// Load environment variables
-dotenv.config();
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);

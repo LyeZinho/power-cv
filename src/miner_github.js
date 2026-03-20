@@ -14,19 +14,25 @@ const RATE_LIMIT_WINDOW = 60000;
 const BACKOFF_HIGH = 5000;
 const BACKOFF_NORMAL = 500;
 
-const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
 const API_BASE = 'https://api.github.com';
 const REQUEST_TIMEOUT = 10000;
 
-const githubClient = axios.create({
-  baseURL: API_BASE,
-  timeout: REQUEST_TIMEOUT,
-  headers: {
-    'Authorization': `token ${GITHUB_TOKEN}`,
-    'Accept': 'application/vnd.github.v3+json',
-    'User-Agent': 'power-cv-miner'
+function getGithubClient() {
+  const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
+  if (!GITHUB_TOKEN) {
+    throw new Error('GITHUB_TOKEN not set in environment');
   }
-});
+  
+  return axios.create({
+    baseURL: API_BASE,
+    timeout: REQUEST_TIMEOUT,
+    headers: {
+      'Authorization': `token ${GITHUB_TOKEN}`,
+      'Accept': 'application/vnd.github.v3+json',
+      'User-Agent': 'power-cv-miner'
+    }
+  });
+}
 
 /**
  * Sliding window rate limiter: tracks requests in 60-second window,
@@ -51,7 +57,7 @@ async function checkRateLimit() {
 
 async function fetchRateLimitStatus() {
   try {
-    const response = await githubClient.get('/rate_limit');
+    const response = await getGithubClient().get('/rate_limit');
     const { rate } = response.data;
     logger.info('GitHub rate limit status', {
       remaining: rate.remaining,
@@ -75,7 +81,7 @@ async function fetchUserRepos(username) {
     try {
       await checkRateLimit();
       
-      const response = await githubClient.get(`/users/${username}/repos`, {
+      const response = await getGithubClient().get(`/users/${username}/repos`, {
         params: {
           type: 'all',
           per_page: 100,
@@ -109,7 +115,7 @@ async function fetchRepoREADME(owner, repo) {
   try {
     await checkRateLimit();
     
-    const response = await githubClient.get(`/repos/${owner}/${repo}/readme`, {
+    const response = await getGithubClient().get(`/repos/${owner}/${repo}/readme`, {
       headers: {
         'Accept': 'application/vnd.github.v3.raw'
       }
@@ -144,7 +150,7 @@ async function fetchRepoCommits(owner, repo) {
   try {
     await checkRateLimit();
     
-    const response = await githubClient.get(`/repos/${owner}/${repo}/commits`, {
+    const response = await getGithubClient().get(`/repos/${owner}/${repo}/commits`, {
       params: {
         per_page: 50
       }
@@ -156,7 +162,7 @@ async function fetchRepoCommits(owner, repo) {
       try {
         await checkRateLimit();
         
-        const detailResponse = await githubClient.get(`/repos/${owner}/${repo}/commits/${commit.sha}`);
+        const detailResponse = await getGithubClient().get(`/repos/${owner}/${repo}/commits/${commit.sha}`);
         const detail = detailResponse.data;
         
         const filesChanged = detail.files ? detail.files.length : 0;
