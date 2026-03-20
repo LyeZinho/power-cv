@@ -361,6 +361,11 @@ async function main() {
     console.log(`Master context ready for AI CV synthesis: ${masterContextPath}`);
     console.log(`Total duration: ${duration}s`);
 
+    if (options.linkedin) {
+      console.log('\nLinkedIn browser session is preserved in user_data/linkedin/');
+      console.log('Next run will reuse your login session automatically.');
+    }
+
     process.exit(0);
   } catch (error) {
     logger.error('PIPELINE FAILED', {
