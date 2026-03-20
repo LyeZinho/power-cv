@@ -26,6 +26,8 @@ function parseArgs() {
     fresh: false,
     resumeFrom: null,
     help: false,
+    github: null,
+    linkedin: null,
   };
 
   for (let i = 0; i < args.length; i++) {
@@ -35,6 +37,10 @@ function parseArgs() {
       options.help = true;
     } else if (arg === '--fresh') {
       options.fresh = true;
+    } else if (arg === '--github') {
+      options.github = true;
+    } else if (arg === '--linkedin') {
+      options.linkedin = true;
     } else if (arg === '--resume-from') {
       if (i + 1 < args.length) {
         options.resumeFrom = args[i + 1];
@@ -44,6 +50,12 @@ function parseArgs() {
         process.exit(1);
       }
     }
+  }
+
+  // Default to both if neither is specified
+  if (!options.github && !options.linkedin) {
+    options.github = true;
+    options.linkedin = true;
   }
 
   return options;
@@ -60,16 +72,26 @@ USAGE:
 OPTIONS:
   --help              Show this help message and exit
   --fresh             Clear all checkpoints and start fresh from phase 1
+  --github            Mine GitHub data only
+  --linkedin          Scrape LinkedIn data only
   --resume-from PHASE Resume from specific phase (phase_1, phase_2, phase_3)
 
+SOURCES (default: both):
+  --github            Run GitHub mining only
+  --linkedin          Run LinkedIn scraping only
+  (no flag)           Run both GitHub and LinkedIn
+
 PHASES:
-  phase_1  Mining     - Fetch data from GitHub and LinkedIn
+  phase_1  Mining     - Fetch data from GitHub and/or LinkedIn
   phase_2  Processing - Parse and analyze raw data
   phase_3  Aggregation - Create master context from all data
 
 EXAMPLES:
-  node index.js                    # Auto-detect latest checkpoint or start fresh
-  node index.js --fresh            # Clear all checkpoints and start from phase 1
+  node index.js                    # Mine both GitHub and LinkedIn
+  node index.js --github           # Mine GitHub only
+  node index.js --linkedin         # Scrape LinkedIn only
+  node index.js --fresh            # Clear all checkpoints and start fresh
+  node index.js --fresh --github   # Fresh start, GitHub only
   node index.js --resume-from phase_2  # Resume from phase 2
 
 ENVIRONMENT VARIABLES:
@@ -152,28 +174,37 @@ async function main() {
     // ========================================
     if (shouldRunPhase1) {
       logger.info('=== PHASE 1: MINING ===');
+      let githubData = null;
+      let linkedinData = null;
 
-      // Mine GitHub data
-      logger.info('Starting GitHub mining', { username: GITHUB_USERNAME });
-      const githubData = await mine(GITHUB_USERNAME);
-      const githubRepoCount = githubData?.repos?.length || 0;
-      logger.info('GitHub mining completed', { repos: githubRepoCount });
-
-      // Scrape LinkedIn data
-      logger.info('Starting LinkedIn scraping', { username: LINKEDIN_USERNAME });
-      const linkedinData = await scrape(LINKEDIN_USERNAME);
-      if (!linkedinData) {
-        logger.warn('LinkedIn scraping returned null - login may be required');
+      if (options.github) {
+        logger.info('Starting GitHub mining', { username: GITHUB_USERNAME });
+        githubData = await mine(GITHUB_USERNAME);
+        const githubRepoCount = githubData?.repos?.length || 0;
+        logger.info('GitHub mining completed', { repos: githubRepoCount });
       } else {
-        logger.info('LinkedIn scraping completed', {
-          headline: linkedinData.headline,
-        });
+        logger.info('GitHub mining skipped (--linkedin flag set)');
+      }
+
+      if (options.linkedin) {
+        logger.info('Starting LinkedIn scraping', { username: LINKEDIN_USERNAME });
+        linkedinData = await scrape(LINKEDIN_USERNAME);
+        if (!linkedinData) {
+          logger.warn('LinkedIn scraping returned null - login may be required');
+        } else {
+          logger.info('LinkedIn scraping completed', {
+            headline: linkedinData.headline,
+          });
+        }
+      } else {
+        logger.info('LinkedIn scraping skipped (--github flag set)');
       }
 
       // Save Phase 1 checkpoint
       const phase1Success = saveCheckpoint('phase_1', {
         type: 'mining_complete',
-        repos: githubRepoCount,
+        repos: githubData?.repos?.length || 0,
+        github_mined: !!githubData,
         linkedin_scraped: !!linkedinData,
       });
 
