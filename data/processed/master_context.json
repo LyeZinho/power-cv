@@ -1,0 +1,196 @@
+{
+  "github": {
+    "user": "unknown",
+    "repos": [],
+    "tech_dna": [
+      {
+        "name": "JavaScript",
+        "status": "ACTIVE",
+        "first_seen": "2024-01-01T00:00:00.000Z",
+        "last_seen": "2026-03-20T14:00:00.000Z",
+        "repo_count": 5,
+        "total_commits": 150,
+        "velocity_trend": "up",
+        "profile": "Builder",
+        "importance_score": 1
+      },
+      {
+        "name": "TypeScript",
+        "status": "ACTIVE",
+        "first_seen": "2024-06-01T00:00:00.000Z",
+        "last_seen": "2026-03-20T14:00:00.000Z",
+        "repo_count": 3,
+        "total_commits": 80,
+        "velocity_trend": "stable",
+        "profile": "Builder",
+        "importance_score": 1
+      },
+      {
+        "name": "React",
+        "status": "ACTIVE",
+        "first_seen": "2024-02-01T00:00:00.000Z",
+        "last_seen": "2026-03-20T13:00:00.000Z",
+        "repo_count": 4,
+        "total_commits": 120,
+        "velocity_trend": "stable",
+        "profile": "Builder",
+        "importance_score": 1
+      }
+    ]
+  },
+  "linkedin": {
+    "bio": "Software Engineer | Full Stack Developer | Open to Opportunities",
+    "experience": [
+      {
+        "title": "Senior Software Engineer",
+        "company": "Tech Corp Inc.",
+        "period": "Jan 2020 – Present",
+        "description": "Led development of microservices architecture, improved system performance by 40%.",
+        "location": "San Francisco, CA",
+        "skills_mentioned": [
+          "React",
+          "Node.js",
+          "AWS"
+        ]
+      },
+      {
+        "title": "Full Stack Developer",
+        "company": "StartUp Labs",
+        "period": "Jun 2018 – Dec 2019",
+        "description": "Built and maintained customer-facing web platform serving 100K+ users.",
+        "location": "New York, NY",
+        "skills_mentioned": [
+          "JavaScript",
+          "Python"
+        ]
+      }
+    ],
+    "skills": [
+      "JavaScript",
+      "React",
+      "Node.js",
+      "Python",
+      "AWS",
+      "Docker",
+      "PostgreSQL",
+      "GraphQL",
+      "TypeScript",
+      "Agile"
+    ],
+    "education": [
+      {
+        "school": "Stanford University",
+        "degree": "Bachelor of Science",
+        "field": "Computer Science",
+        "graduated": "Graduated 2018"
+      },
+      {
+        "school": "MIT",
+        "degree": "Master of Engineering",
+        "field": "Software Engineering",
+        "graduated": "Graduated 2020"
+      }
+    ],
+    "activity": {
+      "posts_count": 3,
+      "engagement_score": 9
+    }
+  },
+  "job": {
+    "title": "Senior Full-Stack Developer - E-commerce Platform",
+    "required_skills": [
+      "react",
+      "vue",
+      "node.js",
+      "node",
+      "express",
+      "postgresql",
+      "postgres",
+      "aws",
+      "docker",
+      "javascript",
+      "typescript",
+      "java",
+      "graphql",
+      "rest",
+      "cassandra",
+      "microservices",
+      "solid",
+      "tdd"
+    ],
+    "nice_to_have": [
+      "angular",
+      "svelte",
+      "nestjs",
+      "mongodb",
+      "redis",
+      "kubernetes",
+      "python",
+      "go"
+    ],
+    "years_experience": 5,
+    "seniority_level": "senior",
+    "tech_stack": [
+      "react",
+      "vue",
+      "node.js",
+      "node",
+      "express",
+      "postgresql",
+      "postgres",
+      "aws",
+      "docker",
+      "javascript",
+      "typescript",
+      "java",
+      "graphql",
+      "rest",
+      "cassandra",
+      "microservices",
+      "solid",
+      "tdd"
+    ],
+    "keywords": [
+      "distributed",
+      "scalable",
+      "microservice",
+      "cloud",
+      "security",
+      "performance",
+      "optimize",
+      "optimization"
+    ]
+  },
+  "cross_reference": {
+    "linkedin_skills_verified_by_github": [
+      {
+        "linkedin_skill": "JavaScript",
+        "github_tech": "JavaScript",
+        "github_status": "ACTIVE"
+      },
+      {
+        "linkedin_skill": "React",
+        "github_tech": "React",
+        "github_status": "ACTIVE"
+      },
+      {
+        "linkedin_skill": "TypeScript",
+        "github_tech": "TypeScript",
+        "github_status": "ACTIVE"
+      }
+    ],
+    "unverified_skills": [
+      "Node.js",
+      "Python",
+      "AWS",
+      "Docker",
+      "PostgreSQL",
+      "GraphQL",
+      "Agile"
+    ]
+  },
+  "metadata": {
+    "aggregated_at": "2026-03-20T14:04:14.373Z",
+    "version": "1.0"
+  }
+}

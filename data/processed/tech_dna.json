@@ -1,0 +1,38 @@
+{
+  "technologies": [
+    {
+      "name": "JavaScript",
+      "status": "ACTIVE",
+      "first_seen": "2024-01-01T00:00:00.000Z",
+      "last_seen": "2026-03-20T14:00:00.000Z",
+      "repo_count": 5,
+      "total_commits": 150,
+      "velocity_trend": "up",
+      "profile": "Builder",
+      "importance_score": 1.0
+    },
+    {
+      "name": "TypeScript",
+      "status": "ACTIVE",
+      "first_seen": "2024-06-01T00:00:00.000Z",
+      "last_seen": "2026-03-20T14:00:00.000Z",
+      "repo_count": 3,
+      "total_commits": 80,
+      "velocity_trend": "stable",
+      "profile": "Builder",
+      "importance_score": 1.0
+    },
+    {
+      "name": "React",
+      "status": "ACTIVE",
+      "first_seen": "2024-02-01T00:00:00.000Z",
+      "last_seen": "2026-03-20T13:00:00.000Z",
+      "repo_count": 4,
+      "total_commits": 120,
+      "velocity_trend": "stable",
+      "profile": "Builder",
+      "importance_score": 1.0
+    }
+  ],
+  "analysis_timestamp": "2026-03-20T14:00:00.000Z"
+}

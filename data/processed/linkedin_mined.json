@@ -1,0 +1,59 @@
+{
+  "bio": "Software Engineer | Full Stack Developer | Open to Opportunities",
+  "experience": [
+    {
+      "title": "Senior Software Engineer",
+      "company": "Tech Corp Inc.",
+      "period": "Jan 2020 – Present",
+      "description": "Led development of microservices architecture, improved system performance by 40%.",
+      "location": "San Francisco, CA",
+      "skills_mentioned": [
+        "React",
+        "Node.js",
+        "AWS"
+      ]
+    },
+    {
+      "title": "Full Stack Developer",
+      "company": "StartUp Labs",
+      "period": "Jun 2018 – Dec 2019",
+      "description": "Built and maintained customer-facing web platform serving 100K+ users.",
+      "location": "New York, NY",
+      "skills_mentioned": [
+        "JavaScript",
+        "Python"
+      ]
+    }
+  ],
+  "skills": [
+    "JavaScript",
+    "React",
+    "Node.js",
+    "Python",
+    "AWS",
+    "Docker",
+    "PostgreSQL",
+    "GraphQL",
+    "TypeScript",
+    "Agile"
+  ],
+  "education": [
+    {
+      "school": "Stanford University",
+      "degree": "Bachelor of Science",
+      "field": "Computer Science",
+      "graduated": "Graduated 2018"
+    },
+    {
+      "school": "MIT",
+      "degree": "Master of Engineering",
+      "field": "Software Engineering",
+      "graduated": "Graduated 2020"
+    }
+  ],
+  "activity": {
+    "posts_count": 3,
+    "engagement_score": 9
+  },
+  "parsed_at": "2026-03-20T14:07:00.880Z"
+}
